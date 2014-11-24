@@ -6,9 +6,11 @@
       $urlRouterProvider.otherwise('/');
 
       $stateProvider
-        .state('home',     {url:'/',         templateUrl:'/views/home/home.html'})
-        .state('register', {url:'/register', templateUrl:'/views/users/users.html', controller:'UsersCtrl'})
-        .state('login',    {url:'/login',    templateUrl:'/views/users/users.html', controller:'UsersCtrl'});
+        .state('home',          {url:'/',         templateUrl:'/views/home/home.html'})
+        .state('register',      {url:'/register', templateUrl:'/views/users/users.html',      controller:'UsersCtrl'})
+        .state('login',         {url:'/login',    templateUrl:'/views/users/users.html',      controller:'UsersCtrl'})
+        .state('rooms',         {url:'/rooms',    templateUrl:'/views/rooms/rooms.html',      abstract:true})
+        .state('rooms.list',    {url:'',          templateUrl:'/views/rooms/rooms_list.html', controller:'RoomsListCtrl'});
 
       $localForageProvider.config({name:'hapi-auth', storeName:'cache', version:1.0});
     }])
@@ -18,7 +20,7 @@
       }, function(){
         $rootScope.$broadcast('username', null);
       });
-
+      //Making a Global Variable
       window.socket = io.connect('/');
       window.socket.on('online', function(){
         $rootScope.$broadcast('online');

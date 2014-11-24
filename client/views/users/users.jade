@@ -15,5 +15,7 @@ h1 {{mode | uppercase}}
                .small-6.columns
            .row
                .small-6.columns
-                  button(ng-click='submit()') Submit
+                  label(for='photo') URL photo
+                   input.form-control#photo(ng-pattern='/^http/', ng-model='user.photo', type='text', name='photo')
                .small-6.columns
+                   button(ng-click='submit()') Submit

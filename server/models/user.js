@@ -14,6 +14,16 @@ UserSchema = new mongoose.Schema({
 UserSchema.methods.encrypt = function(){
   this.password = bcrypt.hashSync(this.password, 10);
 };
+/*
+UserSchema.methods.download = function(){
+    var assetDir = dirnam + '/../../assets/' + this._id,
+        ext      = path.extname(this.avatar);
+
+    fs.mkdirSync(assetDir);
+
+    request(this.avatar).pipe(fs.createWriteStream(assetDir + '/avatar' + ext));
+    this.avatar = '/assets/' + this._id + '/avatar' + ext;
+}*/
 
 UserSchema.statics.login = function(obj, cb){
   User.findOne({username: obj.username}, function(err, user){
