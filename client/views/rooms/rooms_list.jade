@@ -9,8 +9,8 @@ h1 List of Rooms
             .small-12.columns
                 h3 Room List
     .small-4.columns
-        h3 Sociolize fewl
+        h3 Socialize
         #messages.panel.callout.radius
             //ng-model creates message in scope
         input.inputChat(type='text', ng-model='message')
-        button.succes.tiny.radius(ng-click='chat(message)') Send yo Words
+        button.succes.tiny.radius.chatInput(ng-click='chat(message)') Send

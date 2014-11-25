@@ -8,12 +8,33 @@ var mongoose = require('mongoose'),
 UserSchema = new mongoose.Schema({
   username:  {type: String, required: true, validate: [usernameV, 'username length'], unique: true},
   password:  {type: String, required: true, validate: [passwordV, 'password length']},
-  createdAt: {type: Date,  required: true, default: Date.now}
+  createdAt: {type: Date,  required: true, default: Date.now},
+    avatarUrl: {type: String}
 });
 
 UserSchema.methods.encrypt = function(){
   this.password = bcrypt.hashSync(this.password, 10);
 };
+/*
+UserSchema.methods.downloadImage = function(cb){
+    var dirName   = 'client/assets/img/' + this.username,
+        relPath  = 'assets/img/' + this.username + '/avatar.png',
+        self = this;
+
+    if(!fs.existsSync(dirName)){fs.mkdirSync(dirName);}
+
+
+    request(self.avatarUrl).pipe(fs.createWriteStream(dirName + '/avatar.png'))
+        .on('close', function(){
+            self.avatarUrl = relPath;
+            cb(null);
+        })
+        .on('error', function(){
+            //error catching for requests
+            cb(null);
+        });
+};
+*/
 /*
 UserSchema.methods.download = function(){
     var assetDir = dirnam + '/../../assets/' + this._id,

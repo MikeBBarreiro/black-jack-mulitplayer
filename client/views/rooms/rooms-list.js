@@ -6,6 +6,7 @@
             $scope.chat = function(msg){
                 socket.emit('globalChat', msg);
                 //alert(msg);
+                //$scope.clearInput();
             };
 
             socket.on('bGlobalChat', function(data){
@@ -21,6 +22,10 @@
                     $(this).remove();
                 });
             };
-
+            /*
+            $scope.clearInput = function(){
+                $('input').empty();
+            };
+            */
         }]);
 })();
