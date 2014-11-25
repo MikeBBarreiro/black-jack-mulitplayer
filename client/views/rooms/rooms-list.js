@@ -9,8 +9,9 @@
             };
 
             socket.on('bGlobalChat', function(data){
+                var name = data.username;
                 //console.log(data);
-                $('#messages').append('<div class="msgtxt">' + data + '</div>');
+                $('#messages').append('<div class="msgtxt">'+ name + data + '</div>');
                 //$scope.clearChat();
                 $scope.clearFade();
             });
